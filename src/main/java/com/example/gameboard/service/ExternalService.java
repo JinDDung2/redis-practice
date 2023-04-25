@@ -1,6 +1,7 @@
 package com.example.gameboard.service;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 // 외부 서비스 호출 역할
@@ -25,6 +26,7 @@ public class ExternalService {
         return "Nothing";
     }
 
+    @Cacheable(cacheNames = "ageKey", key = "#userId")
     public int getUserAge(String userId) {
         try {
             Thread.sleep(500);
